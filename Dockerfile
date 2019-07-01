@@ -5,12 +5,13 @@ FROM ubuntu:latest
 WORKDIR /root
 
 # install openssh-server, openjdk and wget
-RUN apt-get update && apt-get install -y openssh-server openjdk-8-jdk wget
+RUN apt-get update && apt-get install -y openssh-server openjdk-8-jdk wget vim
 
 # install hadoop 2.7.2
 COPY hadoop-2.7.2.tar.gz /tmp/ 
 RUN tar -xzvf /tmp/hadoop-2.7.2.tar.gz -C /usr/local/ && \
-    mv /usr/local/hadoop-2.7.2/ /usr/local/hadoop/
+    mv /usr/local/hadoop-2.7.2/ /usr/local/hadoop/  && \
+    rm /tmp/hadoop-2.7.2.tar.gz
 
 # set environment variable
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
